@@ -279,19 +279,52 @@ p {
     filter: drop-shadow(0 0 15px rgba(255, 77, 109, 0.6));
 }
 
-/* Corner GIF - Adjusting to be even smaller (approx 1/16th of screen) */
+/* Position Corner GIF in Top Right */
 .corner-gif {
     position: fixed;
-    bottom: 20px;
+    top: 20px; /* Moved from bottom to top */
     right: 20px;
-    width: 6vw; /* Reduced from 12.5vw to 6vw */
-    min-width: 50px; /* Reduced from 100px to 50px */
-    border-radius: 8px; /* Slightly smaller radius for a smaller image */
+    width: 5vw; 
+    min-width: 45px;
     border: 2px solid white;
-    z-index: 100;
+    border-radius: 50%;
+    z-index: 1000;
+    box-shadow: 0 0 15px rgba(255, 77, 109, 0.4);
+}
+
+/* Click Me Hint Styling */
+.main-gif-container {
+    position: relative;
+    display: inline-block;
+}
+
+.click-hint {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-color);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    pointer-events: none;
+    animation: floatingHint 2s infinite ease-in-out;
+    white-space: nowrap;
+}
+
+@keyframes floatingHint {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+/* Make GIFs look clickable */
+.clickable {
     cursor: pointer;
     transition: transform 0.3s ease;
 }
+.clickable:hover { transform: scale(1.08); }
 
 /* Image Popup Overlays */
 .img-overlay {
@@ -334,6 +367,7 @@ p {
 .full-img {
     box-shadow: 0 0 50px rgba(255, 77, 109, 0.5); /* Glow around the popup images */
 }
+
 
 
 
