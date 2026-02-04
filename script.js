@@ -32,35 +32,32 @@ window.addEventListener('resize', resize);
 // Player Object
 class Player {
     constructor() {
-        this.w = 100; // width
-        this.h = 80;  // height
+        // Original sizes were likely 100x80
+        this.w = 60; // Change from 100 to 60 for a smaller bucket
+        this.h = 45; // Change from 80 to 45 to keep it proportional
+        
         this.x = canvas.width / 2 - this.w / 2;
         this.y = canvas.height - 100;
-        this.speed = 10;
         this.dx = 0;
     }
 
     draw() {
-        // Draw a cute basket or cup (using simple shapes for now, can be improved or replaced with image)
         ctx.fillStyle = '#ff4d6d';
-        
-        // Simple semi-circle basket
         ctx.beginPath();
+        // The drawing logic uses this.w/2, so it will scale automatically
         ctx.arc(this.x + this.w/2, this.y, this.w/2, 0, Math.PI, false);
         ctx.fill();
         
-        // Handle
+        // Rim of the bucket
         ctx.beginPath();
         ctx.strokeStyle = '#c9184a';
-        ctx.lineWidth = 5;
-        ctx.arc(this.x + this.w/2, this.y - 10, this.w/2, Math.PI, 0, false);
+        ctx.lineWidth = 3; // Reduced line width for a smaller bucket
+        ctx.arc(this.x + this.w/2, this.y - 5, this.w/2, Math.PI, 0, false);
         ctx.stroke();
     }
 
     update() {
-        this.x += this.dx;
-        
-        // Boundaries
+        // Keeps the smaller bucket within screen bounds
         if (this.x < 0) this.x = 0;
         if (this.x + this.w > canvas.width) this.x = canvas.width - this.w;
     }
@@ -388,6 +385,7 @@ cornerGif.addEventListener('click', () => flashImage(popup2));
 
 // Initialize
 resize();
+
 
 
 
