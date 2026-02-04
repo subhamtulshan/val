@@ -311,5 +311,23 @@ p {
     to { transform: scale(1); opacity: 1; }
 }
 
+#celebration-screen.active {
+    display: flex;
+    animation: grandGlow 5s ease-in-out infinite;
+}
+
+@keyframes grandGlow {
+    0%, 100% { background: radial-gradient(circle, #fff0f3 0%, #ff8fa3 100%); }
+    50% { background: radial-gradient(circle, #ffccd5 0%, #c9184a 100%); }
+}
+
+/* Ensure the popup images are very clear */
+.img-overlay {
+    background: rgba(0, 0, 0, 0.95); /* Darker background for better image visibility */
+}
+
+.full-img {
+    box-shadow: 0 0 50px rgba(255, 77, 109, 0.5); /* Glow around the popup images */
+}
 
 
