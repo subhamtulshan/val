@@ -156,10 +156,15 @@ p {
 }
 
 .no-btn {
-    min-width: 80px; /* Ensures it's always clickable/visible */
-    white-space: nowrap; /* Prevents the long words from breaking into two lines */
-    transition: left 0.2s ease, top 0.2s ease, transform 0.1s; /* Smooth movement */
-    padding: 10px 20px; /* Give it some breathing room */
+    padding: 12px 25px;
+    font-weight: bold;
+    border-radius: 50px;
+    border: 3px solid white;
+    white-space: nowrap; /* Keeps words on one line */
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy move */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    min-width: 100px;
+    text-align: center;
 }
 
 /* Animations */
@@ -329,5 +334,6 @@ p {
 .full-img {
     box-shadow: 0 0 50px rgba(255, 77, 109, 0.5); /* Glow around the popup images */
 }
+
 
 
