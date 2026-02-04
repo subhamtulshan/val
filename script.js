@@ -155,7 +155,7 @@ window.addEventListener('touchmove', handleInput, { passive: false });
 
 // Game Functions
 function spawnHeart() {
-    if (Math.random() < 0.025) {
+    if (Math.random() < 0.03) {
         hearts.push(new Heart());
     }
 }
@@ -388,6 +388,7 @@ cornerGif.addEventListener('click', () => flashImage(popup2));
 
 // Initialize
 resize();
+
 
 
 
