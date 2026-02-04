@@ -227,6 +227,10 @@ function triggerProposal() {
 }
 
 function startGame() {
+    const music = document.getElementById('bg-music');
+    music.volume = 0.5;
+    music.play().catch(error => console.log("Audio play blocked until interaction."));
+    
     resize();
     player = new Player();
     hearts = [];
@@ -271,3 +275,4 @@ function triggerConfetti() {
 
 // Initialize
 resize();
+
