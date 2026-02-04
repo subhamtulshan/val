@@ -72,7 +72,7 @@ class Heart {
         this.size = Math.random() * 20 + 20; // 20-40px
         this.x = Math.random() * (canvas.width - this.size);
         this.y = -this.size;
-        this.speed = Math.random() * 3 + 2; // 2-5 speed
+        this.speed = Math.random() * 4 + 5;
         this.color = `hsl(${Math.random() * 20 + 340}, 100%, 60%)`; // Pinkish/Red variations
     }
 
@@ -217,6 +217,7 @@ function updateScore() {
 
 function startGame() {
     const music = document.getElementById('bg-music');
+    music.playbackRate = 1.35;
     music.volume = 0.5;
     music.play().catch(error => console.log("Audio play blocked until interaction."));
     
@@ -306,6 +307,7 @@ function triggerConfetti() {
 
 // Initialize
 resize();
+
 
 
 
