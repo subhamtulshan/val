@@ -283,26 +283,64 @@ function triggerProposal() {
 }
 
 function triggerConfetti() {
-    const end = Date.now() + (5 * 1000); // 5 seconds of fireworks
+    const stage1End = 3000;  // 0-3 seconds
+    const stage2End = 7000;  // 3-7 seconds
+    const loopDuration = 10000; // Total 10 seconds before repeat
 
-    (function frame() {
-        confetti({
-            particleCount: 5,
-            angle: 60,
-            spread: 55,
-            origin: { x: 0, y: 0.7 }
-        });
-        confetti({
-            particleCount: 5,
-            angle: 120,
-            spread: 55,
-            origin: { x: 1, y: 0.7 }
-        });
+    const startTime = Date.now();
 
-        if (Date.now() < end) {
-            requestAnimationFrame(frame);
+    const interval = setInterval(function() {
+        const elapsed = (Date.now() - startTime) % loopDuration; // Logic to restart every 10s
+
+        // STAGE 1: 0 - 3 Seconds (Side Crackers)
+        if (elapsed < stage1End) {
+            confetti({
+                particleCount: 4,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0, y: 0.7 },
+                colors: ['#ff4d6d', '#ffffff']
+            });
+            confetti({
+                particleCount: 4,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1, y: 0.7 },
+                colors: ['#ff4d6d', '#ffffff']
+            });
+        } 
+        
+        // STAGE 2: 3 - 7 Seconds (Rocket Blasts)
+        else if (elapsed < stage2End) {
+            confetti({
+                particleCount: 10,
+                spread: 80,
+                origin: { x: Math.random(), y: 0.8 },
+                startVelocity: 40,
+                gravity: 1,
+                colors: ['#ffd700', '#ff0000', '#00ff00'], // Firework colors
+            });
+        } 
+        
+        // STAGE 3: 7 - 10 Seconds (Falling Hearts/Snow)
+        else {
+            confetti({
+                particleCount: 2,
+                angle: 90,
+                spread: 360,
+                origin: { x: Math.random(), y: -0.1 }, // Drop from the very top
+                startVelocity: 5,
+                gravity: 0.5,
+                colors: ['#ffb3c1', '#ff4d6d'],
+                shapes: ['circle'] // Round particles look like soft falling hearts
+            });
         }
-    }());
+
+        // Only stop if the user leaves the screen (Optional)
+        if (gameState !== 'PROPOSAL' && gameState !== 'END') {
+             // clearInterval(interval); // Uncomment if you want it to stop eventually
+        }
+    }, 150);
 }
 
 // Grab the elements
@@ -332,6 +370,7 @@ cornerGif.addEventListener('click', () => flashImage(popup2));
 
 // Initialize
 resize();
+
 
 
 
