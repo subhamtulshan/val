@@ -249,12 +249,26 @@ yesBtn.addEventListener('click', () => {
 noBtn.addEventListener('mouseover', moveNoButton);
 noBtn.addEventListener('touchstart', moveNoButton);
 
+// Array of funny words to cycle through
+const funnyWords = ["NO", "Haat", "Nautanki", "TmseNaHoPayega", "PHD's", "GadheKILaat"];
+let wordIndex = 0;
+
 function moveNoButton() {
+    // 1. Move to a random position
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
     const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    
     noBtn.style.position = 'fixed';
     noBtn.style.left = `${x}px`;
     noBtn.style.top = `${y}px`;
+
+    // 2. Change the text of the button
+    // This will cycle through the list: No -> Haat -> Nautanki... and then back to No
+    wordIndex = (wordIndex + 1) % funnyWords.length;
+    noBtn.innerText = funnyWords[wordIndex];
+
+    // 3. Optional: Add a little wiggle effect
+    noBtn.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
 }
 
 function triggerProposal() {
@@ -370,6 +384,7 @@ cornerGif.addEventListener('click', () => flashImage(popup2));
 
 // Initialize
 resize();
+
 
 
 
