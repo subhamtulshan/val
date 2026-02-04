@@ -174,3 +174,44 @@ p {
 .proposal-content h1 {
     animation: heartbeat 2s infinite;
 }
+
+/* Background Hearts for Proposal */
+.proposal-screen::before {
+    content: '❤️  💖  💗  ❤️  💖';
+    position: absolute;
+    top: -50px;
+    width: 100%;
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-around;
+    animation: rain 5s linear infinite;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+@keyframes rain {
+    0% { transform: translateY(0vh) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+#celebration-screen {
+    text-align: center;
+    background: radial-gradient(circle, #fff0f3 0%, #ff8fa3 100%); /* Radiant glow */
+}
+
+#celebration-screen h1 {
+    font-size: clamp(3rem, 10vw, 6rem); /* Responsive size */
+    animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.celebration-gif {
+    width: min(300px, 80vw);
+    border-radius: 20px;
+    margin-top: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
