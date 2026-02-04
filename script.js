@@ -268,11 +268,33 @@ function moveNoButton() {
 }
 
 function triggerConfetti() {
-    // Simple confetti effect using particles or similar
-    // We can just reuse the heat/particle engine or add a simple CSS class to body
-    // For now, let's just let it be.
+    const end = Date.now() + (5 * 1000); // 5 seconds of fireworks
+
+    (function frame() {
+        // Left side burst
+        confetti({
+            particleCount: 3,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0, y: 0.6 },
+            colors: ['#ff4d6d', '#ff8fa3', '#ffffff']
+        });
+        // Right side burst
+        confetti({
+            particleCount: 3,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1, y: 0.6 },
+            colors: ['#ff4d6d', '#ff8fa3', '#ffffff']
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    }());
 }
 
 // Initialize
 resize();
+
 
