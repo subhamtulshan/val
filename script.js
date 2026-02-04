@@ -4,7 +4,7 @@ const ctx = canvas.getContext('2d');
 // Game State
 let gameState = 'START'; // START, PLAYING, WON, PROPOSAL, END
 let score = 0;
-const WIN_SCORE = 15; // Hearts needed to fill the meter
+const WIN_SCORE = 25; // Hearts needed to fill the meter
 let player;
 let hearts = [];
 let particles = []; // For effects
@@ -155,7 +155,7 @@ window.addEventListener('touchmove', handleInput, { passive: false });
 
 // Game Functions
 function spawnHeart() {
-    if (Math.random() < 0.02) {
+    if (Math.random() < 0.025) {
         hearts.push(new Heart());
     }
 }
@@ -217,7 +217,7 @@ function updateScore() {
 
 function startGame() {
     const music = document.getElementById('bg-music');
-    music.playbackRate = 1.35;
+    music.playbackRate = 1.25;
     music.volume = 0.5;
     music.play().catch(error => console.log("Audio play blocked until interaction."));
     
@@ -307,6 +307,7 @@ function triggerConfetti() {
 
 // Initialize
 resize();
+
 
 
 
