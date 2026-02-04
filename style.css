@@ -156,10 +156,10 @@ p {
 }
 
 .no-btn {
-    background: #ffb703;
-    color: white;
-    position: relative;
-    transition: all 0.2s;
+    min-width: 80px; /* Ensures it's always clickable/visible */
+    white-space: nowrap; /* Prevents the long words from breaking into two lines */
+    transition: left 0.2s ease, top 0.2s ease, transform 0.1s; /* Smooth movement */
+    padding: 10px 20px; /* Give it some breathing room */
 }
 
 /* Animations */
@@ -310,5 +310,6 @@ p {
     from { transform: scale(0.7); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
+
 
 
