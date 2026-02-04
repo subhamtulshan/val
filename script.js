@@ -249,9 +249,7 @@ yesBtn.addEventListener('click', () => {
 noBtn.addEventListener('mouseover', moveNoButton);
 noBtn.addEventListener('touchstart', moveNoButton);
 
-// Array of funny words to cycle through
-const funnyWords = ["NO", "Haat", "Nautanki", "TmseNaHoPayega", "PHD's", "GadheKILaat"];
-let wordIndex = 0;
+const funnyWords = ["NO", "Haat", "Nautanki", "TmseNaHoPayega", "PHD's", "GadheKILaat", "SaapDost", "SmritiProPHD","LobLob.....","MomoShop"];
 
 function moveNoButton() {
     // 1. Move to a random position
@@ -262,13 +260,19 @@ function moveNoButton() {
     noBtn.style.left = `${x}px`;
     noBtn.style.top = `${y}px`;
 
-    // 2. Change the text of the button
-    // This will cycle through the list: No -> Haat -> Nautanki... and then back to No
-    wordIndex = (wordIndex + 1) % funnyWords.length;
-    noBtn.innerText = funnyWords[wordIndex];
+    // 2. Select a RANDOM word (not just cycling)
+    const randomWord = funnyWords[Math.floor(Math.random() * funnyWords.length)];
+    noBtn.innerText = randomWord;
 
-    // 3. Optional: Add a little wiggle effect
-    noBtn.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
+    // 3. Change to a RANDOM bright color
+    // Generating a random Hue (0-360) with high saturation for visibility
+    const randomHue = Math.floor(Math.random() * 360);
+    noBtn.style.backgroundColor = `hsl(${randomHue}, 80%, 60%)`;
+    noBtn.style.color = "white"; // Keep text white for contrast
+    noBtn.style.borderColor = `hsl(${randomHue}, 80%, 40%)`;
+
+    // 4. Add a random tilt/rotation
+    noBtn.style.transform = `rotate(${Math.random() * 40 - 20}deg)`;
 }
 
 function triggerProposal() {
@@ -384,6 +388,7 @@ cornerGif.addEventListener('click', () => flashImage(popup2));
 
 // Initialize
 resize();
+
 
 
 
