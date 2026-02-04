@@ -305,8 +305,34 @@ function triggerConfetti() {
     }());
 }
 
+// Grab the elements
+const mainGif = document.getElementById('main-gif-trigger');
+const cornerGif = document.getElementById('corner-gif-trigger');
+const popup1 = document.getElementById('popup-1');
+const popup2 = document.getElementById('popup-2');
+
+// Function to handle the 6-second show time
+function flashImage(overlay) {
+    overlay.style.display = 'flex';
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 6000); // 6 seconds
+}
+
+// Click Main GIF -> 1.png
+mainGif.addEventListener('click', () => flashImage(popup1));
+
+// Click Corner GIF -> 2.jpg
+cornerGif.addEventListener('click', () => flashImage(popup2));
+
+// Allow clicking the black background to close immediately
+[popup1, popup2].forEach(p => {
+    p.addEventListener('click', () => p.style.display = 'none');
+});
+
 // Initialize
 resize();
+
 
 
 
