@@ -297,63 +297,64 @@ function triggerProposal() {
 }
 
 function triggerConfetti() {
-    const loopDuration = 10000; // 10 second cycle
+    const loopDuration = 10000; // 10 second total loop
     const stage1End = 3000;    // 0-3s: Side Crackers
-    const stage2End = 7000;    // 3-7s: Heavy Rockets
-    // 7-10s: Heart Rain
+    const stage2End = 7000;    // 3-7s: Bottom Rockets
+    // 7-10s: Top Rain
 
     const startTime = Date.now();
 
     const interval = setInterval(function() {
         const elapsed = (Date.now() - startTime) % loopDuration;
 
-        // STAGE 1: 0-3s (Grand Side Bursts - "The Crackers")
+        // STAGE 1: 0-3s (Grand Side Bursts - The "Crackers")
         if (elapsed < stage1End) {
-            const defaults = { startVelocity: 45, spread: 60, ticks: 100, zIndex: 0, particleCount: 15 };
             confetti({
-                ...defaults,
+                particleCount: 10,
                 angle: 60,
-                origin: { x: 0, y: 0.7 },
-                colors: ['#ff4d6d', '#ffffff', '#ff8fa3']
+                spread: 70,
+                origin: { x: 0, y: 0.6 },
+                colors: ['#ff4d6d', '#ffffff'],
+                scalar: 1.2 // Larger particles for visibility
             });
             confetti({
-                ...defaults,
+                particleCount: 10,
                 angle: 120,
-                origin: { x: 1, y: 0.7 },
-                colors: ['#ff4d6d', '#ffffff', '#ff8fa3']
+                spread: 70,
+                origin: { x: 1, y: 0.6 },
+                colors: ['#ff4d6d', '#ffffff'],
+                scalar: 1.2
             });
         } 
         
-        // STAGE 2: 3-7s (The Rocket Finale - Heavy Bursts)
+        // STAGE 2: 3-7s (The Rocket Finale - Blasting from Bottom)
         else if (elapsed < stage2End) {
-            // Shoots multiple "rockets" from random bottom positions
             confetti({
-                particleCount: 40, // High density for "Grand" feel
+                particleCount: 25,
                 spread: 100,
-                origin: { x: Math.random(), y: 0.8 },
-                startVelocity: 60,
-                gravity: 0.8,
-                drift: Math.random() - 0.5,
-                colors: ['#ff0000', '#ffd700', '#ffffff', '#ff69b4'],
-                scalar: 1.2 // Larger particles
+                origin: { x: Math.random(), y: 0.9 }, // Blasts from random bottom spots
+                startVelocity: 50,
+                gravity: 0.9,
+                colors: ['#ffd700', '#ff0000', '#ffffff'],
+                scalar: 1.4
             });
         } 
         
-        // STAGE 3: 7-10s (Gentle Heart/Soft Rain)
+        // STAGE 3: 7-10s (Grand Rain - From Top)
         else {
             confetti({
-                particleCount: 3,
+                particleCount: 5,
                 angle: 90,
                 spread: 360,
-                origin: { x: Math.random(), y: -0.2 },
-                startVelocity: 10,
-                gravity: 0.4,
-                colors: ['#ffb3c1', '#ff4d6d'],
+                origin: { x: Math.random(), y: -0.1 }, // Dropping from top
+                startVelocity: 15,
+                gravity: 0.5,
+                colors: ['#ffccd5', '#c9184a'],
                 shapes: ['circle'],
-                ticks: 300
+                scalar: 1.1
             });
         }
-    }, 100); // Faster trigger (every 100ms) for a denser feel
+    }, 100); // Triggering every 100ms for constant movement
 }
 
 // Grab the elements
@@ -383,6 +384,7 @@ cornerGif.addEventListener('click', () => flashImage(popup2));
 
 // Initialize
 resize();
+
 
 
 
