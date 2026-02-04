@@ -215,17 +215,6 @@ function updateScore() {
     loveMeter.style.width = `${percentage}%`;
 }
 
-function triggerProposal() {
-    gameState = 'PROPOSAL';
-    // Small delay to let the particle effect finish or just smooth transition
-    setTimeout(() => {
-        proposalScreen.classList.remove('hidden');
-        proposalScreen.classList.add('active');
-        // Stop the loop or keep it running for background? 
-        // Let's keep loop for maybe background falling hearts but pause spawning
-    }, 500);
-}
-
 function startGame() {
     const music = document.getElementById('bg-music');
     music.volume = 0.5;
@@ -267,25 +256,46 @@ function moveNoButton() {
     noBtn.style.top = `${y}px`;
 }
 
+function triggerProposal() {
+    gameState = 'PROPOSAL';
+    
+    // Create background hearts for the proposal screen
+    const bg = document.createElement('div');
+    bg.className = 'proposal-bg-hearts';
+    proposalScreen.appendChild(bg);
+
+    for (let i = 0; i < 15; i++) {
+        const h = document.createElement('div');
+        h.className = 'bg-heart';
+        h.innerHTML = '❤️';
+        h.style.left = Math.random() * 100 + 'vw';
+        h.style.top = '-50px';
+        h.style.fontSize = (Math.random() * 20 + 20) + 'px';
+        h.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        bg.appendChild(h);
+    }
+
+    setTimeout(() => {
+        proposalScreen.classList.remove('hidden');
+        proposalScreen.classList.add('active');
+    }, 500);
+}
+
 function triggerConfetti() {
     const end = Date.now() + (5 * 1000); // 5 seconds of fireworks
 
     (function frame() {
-        // Left side burst
         confetti({
-            particleCount: 3,
+            particleCount: 5,
             angle: 60,
             spread: 55,
-            origin: { x: 0, y: 0.6 },
-            colors: ['#ff4d6d', '#ff8fa3', '#ffffff']
+            origin: { x: 0, y: 0.7 }
         });
-        // Right side burst
         confetti({
-            particleCount: 3,
+            particleCount: 5,
             angle: 120,
             spread: 55,
-            origin: { x: 1, y: 0.6 },
-            colors: ['#ff4d6d', '#ff8fa3', '#ffffff']
+            origin: { x: 1, y: 0.7 }
         });
 
         if (Date.now() < end) {
@@ -296,5 +306,6 @@ function triggerConfetti() {
 
 // Initialize
 resize();
+
 
 
