@@ -245,7 +245,7 @@ p {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    min-height: 80vh; 
 }
 
 .celebration-gif {
@@ -310,4 +310,5 @@ p {
     from { transform: scale(0.7); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
+
 
